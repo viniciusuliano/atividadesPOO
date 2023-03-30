@@ -1,30 +1,53 @@
-class Macaco:
-    def __init__(self, nome):
-        self.nome = nome
-        self.bucho = []    
-
-    def comer(self, alimento):
-        self.bucho.append(alimento)
+class Tamagushi:
+  def __init__(self, nome, fome, saude, idade):
+    self.nome = nome
+    self.fome = fome
+    self.saude = saude
+    self.idade = idade
     
-    def verBucho(self):
-        print(f'O {self.nome} tem no bucho: {self.bucho}')
+  
+  def alteraNome(self, novo_nome):
+    self.nome = novo_nome
+    return(f'O tamagushi se chama {self.nome}')
+  
+  def indicadorFome(self, fome=0):
+    self.fome += fome
+    if self.fome > 70:
+      return('O tamagushi está com fome :(') 
+    else:
+      return('O tamagushi não está com fome')   
+  
+  def indicadorSaude(self, saude=0):
+    self.saude += saude
+    if self.saude < 50:
+      return('A saude do tamagushi está baixa')
+    else:
+      return('A saude do tamagushi está boa')
     
-    def digerir(self):
-        self.bucho = []
-        print(f'O {self.nome} digeriu tudo e ficou com o bucho vazio')
+  def indicadorIdade(self, idade):
+    self.idade = idade
+    return(f'A idade do tamagushi é {self.idade} anos')
+  
+  def indicadorHumor(self):
+    if self.fome > 70 and self.saude < 50:
+      return "O tamagushi está com fome e doente! Ele está triste e mal-humorado!"
+    elif self.fome > 70:
+      return "O tamagushi está com fome! Ele está irritado e impaciente!"
+    elif self.saude < 50:
+      return "O tamagushi está doente! Ele está triste e cansado!"
+    else:
+      return "O tamagushi está feliz e contente!"
     
+tamagushi = Tamagushi('', 0, 0, 0)
+print(tamagushi.alteraNome('Vinicius'))
+print(tamagushi.indicadorFome(80))
+print(tamagushi.indicadorSaude(40))
+print(tamagushi.indicadorIdade(10))
+print(tamagushi.indicadorHumor())
 
-macaco1 = Macaco('Donkey Kong')
-macaco2 = Macaco('Monga')
-
-alimentos = ["banana", "morango", "laranja"]
-
-for alimento in alimentos:
-    macaco1.comer(alimentos)
-    macaco2.comer(alimentos)
-
-    macaco1.verBucho()
-    macaco2.verBucho()
-
-    macaco1.digerir()
-    macaco1.comer(macaco2)
+tamagushi2 = Tamagushi('', 0, 0, 0)
+print(tamagushi2.alteraNome('Matheus'))
+print(tamagushi2.indicadorFome(50))
+print(tamagushi2.indicadorSaude(80))
+print(tamagushi2.indicadorIdade(5))
+print(tamagushi2.indicadorHumor())
