@@ -1,0 +1,107 @@
+import random
+
+class BichinhoVirtual:
+    def __init__(self, nome):
+        self.nome = nome
+        self.fome = random.randint(0, 10)
+        self.tedio = random.randint(0, 10)
+    
+    def __str__(self):
+        return f"Bichinho: {self.nome}\nNível de fome: {self.fome}\nNível de tédio: {self.tedio}"
+    
+    def comer(self, quantidade):
+        self.fome -= quantidade
+    
+    def brincar(self, tempo):
+        self.tedio -= tempo
+    
+    def passar_tempo(self):
+        self.fome += 1
+        self.tedio += 1
+    
+    def verificar_estado(self):
+        if self.fome <= 0:
+            print(f"{self.nome} está satisfeito!")
+        elif self.fome <= 4:
+            print(f"{self.nome} está com um pouco de fome.")
+        elif self.fome <= 7:
+            print(f"{self.nome} está com fome!")
+        else:
+            print(f"{self.nome} está com muita fome!")
+        
+        if self.tedio <= 0:
+            print(f"{self.nome} está entretido!")
+        elif self.tedio <= 4:
+            print(f"{self.nome} está um pouco entediado.")
+        elif self.tedio <= 7:
+            print(f"{self.nome} está entediado!")
+        else:
+            print(f"{self.nome} está muito entediado!")
+
+
+class FazendaDeBichinhos:
+    def __init__(self):
+        self.bichinhos = []
+    
+    def adicionar_bichinho(self, bichinho):
+        self.bichinhos.append(bichinho)
+    
+    def alimentar_todos(self, quantidade):
+        for bichinho in self.bichinhos:
+            bichinho.comer(quantidade)
+    
+    def brincar_com_todos(self, tempo):
+        for bichinho in self.bichinhos:
+            bichinho.brincar(tempo)
+    
+    def ouvir_todos(self):
+        for bichinho in self.bichinhos:
+            bichinho.verificar_estado()
+    
+    def mostrar_todos(self):
+        for bichinho in self.bichinhos:
+            print(bichinho)
+            print()
+
+
+def main():
+    fazenda = FazendaDeBichinhos()
+    
+    bichinho1 = BichinhoVirtual("Bichinho1")
+    bichinho2 = BichinhoVirtual("Bichinho2")
+    bichinho3 = BichinhoVirtual("Bichinho3")
+    
+    fazenda.adicionar_bichinho(bichinho1)
+    fazenda.adicionar_bichinho(bichinho2)
+    fazenda.adicionar_bichinho(bichinho3)
+    
+    while True:
+        print("1 - Alimentar todos os bichinhos")
+        print("2 - Brincar com todos os bichinhos")
+        print("3 - Ouvir todos os bichinhos")
+        print("4 - Mostrar todos os bichinhos (opção secreta)")
+        print("0 - Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            quantidade = int(input("Quantidade de comida a fornecer: "))
+            fazenda.alimentar_todos(quantidade)
+        elif opcao == "2":
+            tempo = int(input("Tempo de brincadeira: "))
+            fazenda.brincar_com_todos(tempo)
+        elif opcao == "3":
+            fazenda.ouvir_todos()
+        elif opcao == "4":
+            fazenda.mostrar_todos()
+        elif opcao == "0":
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+        for bichinho in fazenda.bichinhos:
+            bichinho.passar_tempo()
+
+
+if __name__ == "__main__":
+    main()
