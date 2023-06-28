@@ -1,0 +1,46 @@
+class Macaco:
+    def __init__(self, nome):
+        self.nome = nome
+        self.bucho = []
+
+    def comer(self, alimento):
+        self.bucho.append(alimento)
+
+    def verBucho(self):
+        if len(self.bucho) == 0:
+            print(f"{self.nome} está com o estômago vazio.")
+        else:
+            print(
+                f"{self.nome} tem os seguintes alimentos no estômago: {', '.join(self.bucho)}")
+
+    def digerir(self):
+        if len(self.bucho) == 0:
+            print(f"{self.nome} não tem nada no estômago para digerir.")
+        else:
+            print(
+                f"{self.nome} está digerindo os alimentos: {', '.join(self.bucho)}")
+            self.bucho = []
+
+
+macaco1 = Macaco("Kong")
+macaco2 = Macaco("Donkey")
+
+
+macaco1.comer("Banana")
+macaco1.comer("Maçã")
+macaco1.comer("Laranja")
+
+macaco2.comer("Cenoura")
+macaco2.comer("Uva")
+macaco2.comer("Pêssego")
+
+
+macaco1.verBucho()
+macaco2.verBucho()
+
+macaco1.digerir()
+macaco2.digerir()
+
+
+macaco1.verBucho()
+macaco2.verBucho()
